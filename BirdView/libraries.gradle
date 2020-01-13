@@ -1,0 +1,23 @@
+ext {
+    versions = [
+            kotlin_version  : '1.3.61',
+            okHttp_version  : '3.12.1',
+            gson_version    : '2.8.6',
+            retrofit_version: '2.7.1',
+
+            recyclerview_version : '28.0.0'
+
+    ]
+
+    basicDependencies = [
+            recyclerview : "com.android.support:recyclerview-v7:$versions.recyclerview_version"
+    ]
+
+    networkDependencies = [
+            gson                    : "com.google.code.gson:gson:$versions.gson_version",
+            okHttp                  : "com.squareup.okhttp3:okhttp:$versions.okHttp_version",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp_version",
+            retrofit: "com.squareup.retrofit2:retrofit:$versions.retrofit_version"
+    ]
+
+}
