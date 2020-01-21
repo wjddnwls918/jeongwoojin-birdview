@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.birdview.view.index.HwaHaeListViewModel" />
+
+        <variable
+            name="item"
+            type="com.example.birdview.model.HwaHaeListItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{item.title}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_image" />
+
+        <TextView
+            android:id="@+id/tv_item_price"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{item.price}"
+            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_title" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end_of_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

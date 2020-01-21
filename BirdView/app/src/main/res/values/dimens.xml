@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- common -->
+    <dimen name="hwahae_common_background_radius">10dp</dimen>
+    <dimen name="hwahae_common_small_margin">5dp</dimen>
+    <dimen name="hwahae_common_medium_margin">10dp</dimen>
+    <dimen name="hwahae_common_large_margin">15dp</dimen>
+
+</resources>

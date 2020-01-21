@@ -2,17 +2,23 @@ package com.example.birdview.model
 
 import com.example.birdview.model.remote.HwaHaeApiCreator
 import com.example.birdview.model.remote.HwaHaeListApi
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 
-class DefaultRepository : HwaHaeListRepository {
+object DefaultRepository : HwaHaeListRepository {
 
-    val service: HwaHaeListApi = HwaHaeApiCreator.create(HwaHaeListApi::class.java)
+    private val service by lazy {
+        HwaHaeApiCreator.create(HwaHaeListApi::class.java)
+    }
 
-    override suspend fun getList(
-        skin_type: String,
-        page: Int,
-        search: String
-    ): List<HwaHaeListItem> {
+    override fun getList(
+        skin_type: String?,
+        page: Int?,
+        search: String?
+    ): Single<List<HwaHaeListItem>> {
         return service.getList(skin_type, page, search)
+            .subscribeOn(Schedulers.io())
     }
 
 }

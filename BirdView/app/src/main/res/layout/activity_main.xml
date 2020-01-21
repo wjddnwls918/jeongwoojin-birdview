@@ -4,7 +4,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".view.index.HwaHaeListActivity">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.birdview.view.index.HwaHaeListViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,14 +20,29 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/hwahaeColorPrimary"
             app:layout_constraintBottom_toBottomOf="@id/gl_end_of_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_search_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/hwahae_common_large_margin"
+                android:layout_marginEnd="@dimen/hwahae_common_large_margin"
+                android:background="@drawable/background_radius"
+                app:iconifiedByDefault="false"
+                app:queryHint="@string/hwahae_search_hint" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_hwahae_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:items="@{viewmodel.list}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
