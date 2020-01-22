@@ -16,7 +16,7 @@ object DefaultRepository : HwaHaeListRepository {
         skin_type: String?,
         page: Int?,
         search: String?
-    ): Single<List<HwaHaeListItem>> {
+    ): Single<HwaHaeListBody> {
         return service.getList(skin_type, page, search)
             .subscribeOn(Schedulers.io())
     }

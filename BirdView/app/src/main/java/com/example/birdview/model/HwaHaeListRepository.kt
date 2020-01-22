@@ -7,5 +7,5 @@ interface HwaHaeListRepository {
         skin_type: String?,
         page: Int?,
         search: String?
-    ): Single<List<HwaHaeListItem>>
+    ): Single<HwaHaeListBody>
 }

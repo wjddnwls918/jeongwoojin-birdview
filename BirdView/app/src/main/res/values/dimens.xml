@@ -2,8 +2,16 @@
 <resources>
     <!-- common -->
     <dimen name="hwahae_common_background_radius">10dp</dimen>
+
     <dimen name="hwahae_common_small_margin">5dp</dimen>
     <dimen name="hwahae_common_medium_margin">10dp</dimen>
     <dimen name="hwahae_common_large_margin">15dp</dimen>
+
+    <dimen name="hwahae_common_medium_padding">10dp</dimen>
+
+    <dimen name="hwahae_common_small_elevation">2dp</dimen>
+
+    <!-- list -->
+    <dimen name="hwahae_list_item_size">300dp</dimen>
 
 </resources>

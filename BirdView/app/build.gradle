@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply from: '../libraries.gradle'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     compileOptions {
@@ -45,7 +47,10 @@ dependencies {
     //add gradle
     implementation basicDependencies.values()
     implementation networkDependencies.values()
-    //implementation coroutine.values()
+    implementation coroutine.values()
+    kapt lifecycleCompiler.values()
     implementation androidArchitectureComponents.values()
     implementation rx.values()
+    implementation glide.values()
+    annotationProcessor glideCompiler.values()
 }

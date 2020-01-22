@@ -6,9 +6,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.birdview.common.BaseRecyclerViewAdapter
 import com.example.birdview.databinding.HwahaeListItemBinding
 import com.example.birdview.model.HwaHaeListItem
 
+
+class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>) : BaseRecyclerViewAdapter<HwaHaeListItem, HwaHaeListAdapter.ViewHodler>(dataSet) {
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHodler {
+        val binding = HwahaeListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+
+        return ViewHodler(binding)
+    }
+
+    override fun onBindView(holder: ViewHodler, position: Int) {
+        holder.binding.item = getItem(position)
+    }
+
+
+    class ViewHodler(var binding: HwahaeListItemBinding) : RecyclerView.ViewHolder(binding.root)
+
+}
+
+/*
 class HwaHaeListAdapter(private val viewModel: HwaHaeListViewModel) :
     ListAdapter<HwaHaeListItem, HwaHaeListAdapter.ViewHolder>(ListDiffCallback()) {
 
@@ -44,12 +65,14 @@ class HwaHaeListAdapter(private val viewModel: HwaHaeListViewModel) :
     }
 }
 
+*/
 /**
  * Callback for calculating the diff between two non-null items in a list.
  *
  * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
  * list that's been passed to `submitList`.
- */
+ *//*
+
 class ListDiffCallback : DiffUtil.ItemCallback<HwaHaeListItem>() {
     override fun areItemsTheSame(oldItem: HwaHaeListItem, newItem: HwaHaeListItem): Boolean {
         return oldItem.id == newItem.id
@@ -58,4 +81,4 @@ class ListDiffCallback : DiffUtil.ItemCallback<HwaHaeListItem>() {
     override fun areContentsTheSame(oldItem: HwaHaeListItem, newItem: HwaHaeListItem): Boolean {
         return oldItem == newItem
     }
-}
+}*/

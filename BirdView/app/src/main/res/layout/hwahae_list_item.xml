@@ -17,12 +17,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/hwahae_list_item_size"
+        android:layout_margin="@dimen/hwahae_common_small_margin">
 
         <ImageView
             android:id="@+id/iv_item_image"
+            setImage="@{item.thumbnail_image}"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/background_radius"
             app:layout_constraintBottom_toBottomOf="@id/gl_end_of_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +35,9 @@
             android:id="@+id/tv_item_title"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="@dimen/hwahae_common_small_margin"
+            android:gravity="center_vertical"
+            android:maxLines="2"
             android:text="@{item.title}"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/gl_end_of_title"
@@ -43,8 +49,9 @@
             android:id="@+id/tv_item_price"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="@dimen/hwahae_common_small_margin"
             android:text="@{item.price}"
-            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_item"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/gl_end_of_title" />
@@ -55,21 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.7" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_end_of_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_end_of_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.85" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
