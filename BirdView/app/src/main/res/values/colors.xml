@@ -5,7 +5,10 @@
     <color name="colorAccent">#D81B60</color>
 
     <!-- custom -->
-    <color name="hwahaeColorPrimary">#9013FE</color>
-    <color name="hwahaeColorPrimaryDark">#9013FE</color>
+    <color name="hwahaeColorPrimary">#A131FC</color>
+    <color name="hwahaeColorPrimaryDark">#A131FC</color>
+
+    <!-- list -->
+    <color name="hwahae_list_price_color">#BEBDBD</color>
 
 </resources>

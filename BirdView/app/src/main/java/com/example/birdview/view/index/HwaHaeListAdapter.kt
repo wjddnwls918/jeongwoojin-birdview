@@ -11,7 +11,7 @@ import com.example.birdview.databinding.HwahaeListItemBinding
 import com.example.birdview.model.HwaHaeListItem
 
 
-class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>) : BaseRecyclerViewAdapter<HwaHaeListItem, HwaHaeListAdapter.ViewHodler>(dataSet) {
+class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>, private val viewModel: HwaHaeListViewModel) : BaseRecyclerViewAdapter<HwaHaeListItem, HwaHaeListAdapter.ViewHodler>(dataSet) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHodler {
@@ -22,6 +22,7 @@ class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>) : BaseRecyclerViewAd
 
     override fun onBindView(holder: ViewHodler, position: Int) {
         holder.binding.item = getItem(position)
+        holder.binding.viewmodel = viewModel
     }
 
 

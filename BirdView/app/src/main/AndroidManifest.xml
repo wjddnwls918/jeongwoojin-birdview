@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/noActionBar">
+        <activity android:name=".view.detail.HwaHaeDetailActivity"></activity>
         <activity
             android:name=".view.index.HwaHaeListActivity"
             android:windowSoftInputMode="adjustNothing">

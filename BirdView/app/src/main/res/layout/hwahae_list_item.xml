@@ -17,6 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> viewmodel.openDetail(item.id)}"
         android:layout_height="@dimen/hwahae_list_item_size"
         android:layout_margin="@dimen/hwahae_common_small_margin">
 
@@ -34,27 +35,31 @@
         <TextView
             android:id="@+id/tv_item_title"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/hwahae_common_small_margin"
             android:gravity="center_vertical"
             android:maxLines="2"
             android:text="@{item.title}"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_title"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_end_of_image" />
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_image"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/tv_item_price"
+            transPrice="@{item.price}"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/hwahae_common_small_margin"
-            android:text="@{item.price}"
+            android:textColor="@color/hwahae_list_price_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/gl_end_of_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_item_title"
+            app:layout_constraintVertical_chainStyle="packed" />
 
 
         <androidx.constraintlayout.widget.Guideline
@@ -63,13 +68,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.7" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_end_of_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.85" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
