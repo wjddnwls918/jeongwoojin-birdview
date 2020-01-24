@@ -3,6 +3,9 @@ package com.example.birdview.view.index
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -24,8 +27,6 @@ class HwaHaeListActivity : AppCompatActivity() {
 
     private lateinit var scrollerListener: EndlessRecyclerViewScrollListener
 
-    private val DETAIL_TAG = "detail"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,15 +36,16 @@ class HwaHaeListActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView<HwahaeListActivityBinding>(
             this,
             R.layout.hwahae_list_activity
-        )
-            .apply {
+        ).apply {
                 viewmodel = viewModel
-            }
+        }
+
+        binding.lifecycleOwner = this
 
         initKeyboard()
         initRecyclerView()
-        initObserveList()
         initNavigation()
+        initSpinner()
     }
 
 
@@ -51,7 +53,7 @@ class HwaHaeListActivity : AppCompatActivity() {
         binding.svSearchList.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel._queryString.value = query
-                viewModel.searchList(query)
+                viewModel.searchList()
                 return false
             }
 
@@ -62,16 +64,10 @@ class HwaHaeListActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        binding.viewmodel?.let {
-            binding.rvHwahaeList.adapter = viewModel.adapter
-        }
-
         scrollerListener = object :
             EndlessRecyclerViewScrollListener(binding.rvHwahaeList.layoutManager as GridLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                Log.d("pagecheck", (page + 1).toString())
-
-                viewModel.getList(null, page + 1)
+                viewModel.getList(page + 1)
             }
         }
 
@@ -79,21 +75,49 @@ class HwaHaeListActivity : AppCompatActivity() {
 
     }
 
-    private fun initObserveList() {
-        viewModel.list.observe(this, Observer { list ->
-
-            list?.let {
-                if (list.isNotEmpty()) {
-                    viewModel.addList(list)
-                }
-            }
-        })
-    }
-
     private fun initNavigation() {
         viewModel.openDetailEvent.observe(this, EventObserver {
             openDetail(it)
         })
+    }
+
+    private fun initSpinner() {
+        val items = resources.getStringArray(R.array.skin_type)
+        val spinnerAdapter =
+            ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, items)
+
+        binding.listSpinner.adapter = spinnerAdapter
+
+        binding.listSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+
+                    0 -> {
+                        viewModel._skinType.value = 0
+                    }
+                    1 -> {
+                        viewModel._skinType.value = 1
+                    }
+                    2 -> {
+                        viewModel._skinType.value = 2
+                    }
+                    else -> {
+                        viewModel._skinType.value = 3
+                    }
+
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        }
+
     }
 
     fun openDetail(id: Int) {

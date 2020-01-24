@@ -23,19 +23,26 @@ class HwaHaeListViewModel : ViewModel(){
     private val _openDetailEvent = MutableLiveData<Event<Int>>()
     val openDetailEvent: LiveData<Event<Int>> = _openDetailEvent
 
+    val _skinType = MutableLiveData(0)
+
     init {
         adapter = HwaHaeListAdapter(arrayListOf(),this)
-        getList(null,null)
+        getList(1)
     }
 
     fun getList(
-        skin_type: String?,
         page: Int?
-
     ) {
-        disposable.add(
 
-            DefaultRepository.getList(skin_type, page, _queryString.value).subscribe({ list ->
+        val trans:String? = when(_skinType.value) {
+            0 -> null
+            1 -> "oily"
+            2 -> "dry"
+            else -> "sensitive"
+        }
+
+        disposable.add(
+            DefaultRepository.getList(trans, page, _queryString.value).subscribe({ list ->
 
                 list?.let {
                     Log.d("checklist", "success!!")
@@ -50,13 +57,9 @@ class HwaHaeListViewModel : ViewModel(){
         )
     }
 
-    fun searchList(query:String?) {
+    fun searchList() {
         adapter.removeAllItems()
-        getList(null, null)
-    }
-
-    fun addList(list : ArrayList<HwaHaeListItem>) {
-        adapter.addItems(list)
+        getList(1)
     }
 
     fun openDetail(id:Int) {

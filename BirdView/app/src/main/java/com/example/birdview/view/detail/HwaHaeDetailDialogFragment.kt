@@ -51,6 +51,7 @@ class HwaHaeDetailDialogFragment : DialogFragment() {
             false
         )
         binding.viewmodel = viewModel
+        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -61,7 +62,6 @@ class HwaHaeDetailDialogFragment : DialogFragment() {
         val mArgs = arguments
         viewModel.getDetail(mArgs?.getString("id")?.toInt())
 
-        initObserveDetail()
         initNavigation()
     }
 
@@ -74,7 +74,7 @@ class HwaHaeDetailDialogFragment : DialogFragment() {
         val window = dialog?.window
 
         val x = size.x
-        val y = size.y
+        val y = (size.y*0.9).toInt()
 
         window?.setLayout(x, y)
 
@@ -83,12 +83,6 @@ class HwaHaeDetailDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState)
-    }
-
-    fun initObserveDetail() {
-        viewModel.detail.observe(viewLifecycleOwner, Observer {
-            binding.detail = it
-        })
     }
 
     private fun initNavigation() {
