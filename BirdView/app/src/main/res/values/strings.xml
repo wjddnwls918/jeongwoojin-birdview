@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">BirdView</string>
 
+    <!-- common -->
+    <string name="hwahae_common_load_data_error">데이터를 불러올 수 없습니다. 다시 시도해 주세요.</string>
+
     <!-- search -->
     <string name="hwahae_search_hint">검색</string>
+
+    <!-- detail -->
+    <string name="hwahae_detail_button_text">구매하기</string>
+
 </resources>

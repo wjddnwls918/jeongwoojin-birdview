@@ -3,12 +3,10 @@ package com.example.birdview.view.index
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birdview.common.BaseRecyclerViewAdapter
 import com.example.birdview.databinding.HwahaeListItemBinding
-import com.example.birdview.model.HwaHaeListItem
+import com.example.birdview.model.dto.HwaHaeListItem
 
 
 class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>, private val viewModel: HwaHaeListViewModel) : BaseRecyclerViewAdapter<HwaHaeListItem, HwaHaeListAdapter.ViewHodler>(dataSet) {

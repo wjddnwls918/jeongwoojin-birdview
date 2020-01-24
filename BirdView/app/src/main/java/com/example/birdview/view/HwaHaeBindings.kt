@@ -1,14 +1,13 @@
-package com.example.birdview.view.index
+package com.example.birdview.view
 
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.birdview.model.HwaHaeListItem
+import java.util.*
 
-object HwaHaeListBindings {
+object HwaHaeBindings {
 
     /*@JvmStatic
     @BindingAdapter("items")
@@ -41,7 +40,38 @@ object HwaHaeListBindings {
     @JvmStatic
     @BindingAdapter("transPrice")
     fun transPrice(textView: TextView, price:String) {
-        textView.text = price+"원"
+
+        var trans = ""
+        var count = 0
+        val stk = Stack<Char>()
+        for( i in price.length-1 downTo 0) {
+            count+=1
+            stk.push(price[i])
+            if(count ==3 && i!=0) {
+                count = 0
+                stk.push(',')
+            }
+        }
+
+        while(!stk.isEmpty()) {
+            trans += stk.pop()
+        }
+
+        trans += "원"
+
+        textView.text = trans
+    }
+
+    @JvmStatic
+    @BindingAdapter("setDescription")
+    fun setDescription(textView: TextView, description: String) {
+        val trans = description.split("\\\\n")
+        var result =""
+        for(i in 0..trans.size-1) {
+            result+= (trans[i] +"\n")
+        }
+        Log.d("checkstring" , result)
+        textView.text = result
     }
 
 }

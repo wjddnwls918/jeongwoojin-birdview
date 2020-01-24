@@ -1,4 +1,4 @@
-package com.example.birdview.model
+package com.example.birdview.model.dto
 
 import com.google.gson.annotations.SerializedName
 

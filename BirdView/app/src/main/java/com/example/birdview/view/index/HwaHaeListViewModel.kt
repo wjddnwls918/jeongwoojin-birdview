@@ -1,14 +1,12 @@
 package com.example.birdview.view.index
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.birdview.common.Event
 import com.example.birdview.model.DefaultRepository
-import com.example.birdview.model.HwaHaeListItem
+import com.example.birdview.model.dto.HwaHaeListItem
 import io.reactivex.disposables.CompositeDisposable
 
 class HwaHaeListViewModel : ViewModel(){
@@ -24,7 +22,6 @@ class HwaHaeListViewModel : ViewModel(){
 
     private val _openDetailEvent = MutableLiveData<Event<Int>>()
     val openDetailEvent: LiveData<Event<Int>> = _openDetailEvent
-
 
     init {
         adapter = HwaHaeListAdapter(arrayListOf(),this)
@@ -42,23 +39,12 @@ class HwaHaeListViewModel : ViewModel(){
 
                 list?.let {
                     Log.d("checklist", "success!!")
-                    Log.d("checklist", it.body.size.toString())
-                    Log.d("checklist", it.body[0].id.toString())
-                    Log.d("checklist", it.body[0].title)
-                    Log.d("checklist", it.body[0].price)
-                    Log.d("checklist", it.body[0].thumbnail_image)
-                    Log.d("checklist", it.body[0].score.toString())
-                    //
                     _list.postValue(it.body)
                 }
-
-                if(list.statusCode == 404)
-                    Log.d("checklist","검색 결과가 없습니다")
 
             }, { e ->
                 e.printStackTrace()
                 Log.d("checklist","error!!!!!!!!!")
-
             })
 
         )

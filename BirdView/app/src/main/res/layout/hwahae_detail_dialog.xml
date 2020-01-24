@@ -3,22 +3,128 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="viewmodel"
+            type="com.example.birdview.view.detail.HwaHaeDetailViewModel" />
+
+        <variable
+            name="detail"
+            type="com.example.birdview.model.dto.HwaHaeDetailItem" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/detail_background_radius">
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_detail_image"
+                    setImage='@{detail.full_size_image ?? ""}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/hwahae_common_large_margin"
+                    app:layout_constraintBottom_toTopOf="@id/tv_detail_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/hwahae_common_large_margin"
+                    android:gravity="center_vertical"
+                    android:text='@{detail.title ?? ""}'
+                    android:textSize="@dimen/hwahae_detail_title_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tv_detail_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_detail_image"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_detail_price"
+                    transPrice='@{detail.price ?? "0"}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/hwahae_common_large_margin"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/hwahaeColorPrimary"
+                    android:textSize="@dimen/hwahae_detail_price_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/v_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_title"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <View
+                    android:id="@+id/v_border"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="@dimen/hwahae_common_large_margin"
+                    android:background="@color/hwahae_detail_border_color"
+                    app:layout_constraintBottom_toTopOf="@id/tv_detail_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_detail_price"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_detail_description"
+                    setDescription='@{detail.description ?? ""}'
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/hwahae_common_large_margin"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/hwahae_detail_description_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_border"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        </ScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/hwahae_common_medium_margin"
+            android:onClick="@{()->viewmodel.closeDetail()}"
+            android:src="@drawable/ic_cancel_gray_40dp" />
 
 
-    </ScrollView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/hwahae_common_large_margin"
+            android:layout_marginEnd="@dimen/hwahae_common_large_margin"
+            android:layout_marginBottom="@dimen/hwahae_common_medium_margin"
+            android:background="@color/hwahaeColorPrimary"
+            android:text="@string/hwahae_detail_button_text"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
 
 </layout>

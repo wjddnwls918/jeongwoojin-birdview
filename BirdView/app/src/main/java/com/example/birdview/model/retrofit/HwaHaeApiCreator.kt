@@ -1,4 +1,4 @@
-package com.example.birdview.model.remote
+package com.example.birdview.model.retrofit
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient

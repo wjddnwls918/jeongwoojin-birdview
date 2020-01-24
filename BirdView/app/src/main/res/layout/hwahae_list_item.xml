@@ -11,15 +11,16 @@
 
         <variable
             name="item"
-            type="com.example.birdview.model.HwaHaeListItem" />
+            type="com.example.birdview.model.dto.HwaHaeListItem" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:onClick="@{() -> viewmodel.openDetail(item.id)}"
         android:layout_height="@dimen/hwahae_list_item_size"
-        android:layout_margin="@dimen/hwahae_common_small_margin">
+        android:layout_margin="@dimen/hwahae_common_small_margin"
+        android:elevation="@dimen/hwahae_common_small_elevation"
+        android:onClick="@{() -> viewmodel.openDetail(item.id)}">
 
         <ImageView
             android:id="@+id/iv_item_image"

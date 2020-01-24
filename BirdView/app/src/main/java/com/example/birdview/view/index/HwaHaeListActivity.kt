@@ -1,6 +1,5 @@
 package com.example.birdview.view.index
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,21 +11,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.birdview.R
 import com.example.birdview.common.EndlessRecyclerViewScrollListener
-import com.example.birdview.common.Event
 import com.example.birdview.common.EventObserver
-import com.example.birdview.databinding.ActivityMainBinding
-import com.example.birdview.view.detail.HwaHaeDetailActivity
+import com.example.birdview.databinding.HwahaeListActivityBinding
+import com.example.birdview.view.detail.HwaHaeDetailDialogFragment
 
 class HwaHaeListActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: HwahaeListActivityBinding
 
     private lateinit var viewModelFactory: ViewModelProvider.AndroidViewModelFactory
     private lateinit var viewModel: HwaHaeListViewModel
 
-    //private lateinit var adapter:HwaHaeListAdapter
-
     private lateinit var scrollerListener: EndlessRecyclerViewScrollListener
+
+    private val DETAIL_TAG = "detail"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,10 @@ class HwaHaeListActivity : AppCompatActivity() {
         viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(HwaHaeListViewModel::class.java)
 
-        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView<HwahaeListActivityBinding>(
+            this,
+            R.layout.hwahae_list_activity
+        )
             .apply {
                 viewmodel = viewModel
             }
@@ -49,9 +50,6 @@ class HwaHaeListActivity : AppCompatActivity() {
     private fun initKeyboard() {
         binding.svSearchList.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //Toast.makeText(applicationContext, query.toString(), Toast.LENGTH_SHORT).show()
-                /* viewModel.adapter.removeAllItems()
-                 viewModel.getList(null, null, query)*/
                 viewModel._queryString.value = query
                 viewModel.searchList(query)
                 return false
@@ -86,9 +84,6 @@ class HwaHaeListActivity : AppCompatActivity() {
 
             list?.let {
                 if (list.isNotEmpty()) {
-                    Log.d("checklist", "list size is : " + it.size)
-                    Log.d("checklist", "list type is : " + it[0].score)
-                    //viewModel.adapter.addItems(list)
                     viewModel.addList(list)
                 }
             }
@@ -102,11 +97,12 @@ class HwaHaeListActivity : AppCompatActivity() {
     }
 
     fun openDetail(id: Int) {
-        Log.d("checkid", id.toString())
-        Intent(this, HwaHaeDetailActivity::class.java).run {
-            startActivity(this)
-            overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
-        }
+        val args = Bundle()
+        args.putString("id", id.toString())
+        HwaHaeDetailDialogFragment.getInstance().apply {
+            arguments = args
+        }.show(supportFragmentManager, HwaHaeDetailDialogFragment.DIALOG_TAG)
+
     }
 
 }

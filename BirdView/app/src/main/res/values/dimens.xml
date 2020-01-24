@@ -9,9 +9,19 @@
 
     <dimen name="hwahae_common_medium_padding">10dp</dimen>
 
-    <dimen name="hwahae_common_small_elevation">2dp</dimen>
+    <dimen name="hwahae_common_small_elevation">1dp</dimen>
 
     <!-- list -->
     <dimen name="hwahae_list_item_size">300dp</dimen>
+
+
+    <!-- detail -->
+    <dimen name="hwahae_detail_title_size">30dp</dimen>
+    <dimen name="hwahae_detail_price_size">20dp</dimen>
+    <dimen name="hwahae_detail_description_size">15dp</dimen>
+    <dimen name="hwahae_detail_close_button_size">25dp</dimen>
+    <dimen name="hwahae_detail_background_radius">30dp</dimen>
+
+
 
 </resources>

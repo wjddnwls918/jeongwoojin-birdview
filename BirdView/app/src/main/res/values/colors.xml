@@ -11,4 +11,7 @@
     <!-- list -->
     <color name="hwahae_list_price_color">#BEBDBD</color>
 
+    <!-- detail -->
+    <color name="hwahae_detail_border_color">#DADADA</color>
+
 </resources>
