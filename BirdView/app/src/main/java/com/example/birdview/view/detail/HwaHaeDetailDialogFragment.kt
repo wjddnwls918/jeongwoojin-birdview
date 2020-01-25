@@ -6,6 +6,7 @@ import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -74,15 +75,11 @@ class HwaHaeDetailDialogFragment : DialogFragment() {
         val window = dialog?.window
 
         val x = size.x
-        val y = (size.y*0.9).toInt()
+        val y = (size.y * 0.9).toInt()
 
         window?.setLayout(x, y)
 
         super.onResume()
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState)
     }
 
     private fun initNavigation() {

@@ -42,6 +42,66 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_end_of_toolbar">
+
+            <!-- Scrollable view here -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hwahae_list"
+                bind_adapter="@{viewmodel.adapter}"
+                bind_items="@{viewmodel.list}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:spanCount="2" />
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hwahae_detail_list_header_size"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@anim/appbar_not_elevated">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:contentScrim="@android:color/transparent"
+                    app:expandedTitleGravity="top"
+                    app:layout_scrollFlags="scroll">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin">
+
+                        <Spinner
+                            android:id="@+id/list_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:gravity="center_vertical"
+                            app:layout_constraintBottom_toBottomOf="@id/gl_end_of_filter"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/gl_end_of_toolbar" />
+
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        <!--
         <Spinner
             android:id="@+id/list_spinner"
             android:layout_width="wrap_content"
@@ -65,6 +125,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/gl_end_of_filter"
             app:spanCount="2" />
+
+           -->
 
 
         <androidx.constraintlayout.widget.Guideline

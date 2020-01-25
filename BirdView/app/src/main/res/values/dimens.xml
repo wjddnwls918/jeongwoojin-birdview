@@ -21,6 +21,7 @@
     <dimen name="hwahae_detail_description_size">18dp</dimen>
     <dimen name="hwahae_detail_close_button_size">25dp</dimen>
     <dimen name="hwahae_detail_background_radius">30dp</dimen>
+    <dimen name="hwahae_detail_list_header_size">50dp</dimen>
 
 
 

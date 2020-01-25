@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient
 
 class HwaHaeApplication : Application() {
 
-    //
     override fun onCreate() {
 
         Stetho.initializeWithDefaults(this)

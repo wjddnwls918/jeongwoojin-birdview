@@ -22,7 +22,5 @@ class HwaHaeListAdapter(dataSet: ArrayList<HwaHaeListItem>, private val viewMode
         holder.binding.viewmodel = viewModel
     }
 
-
     class ViewHodler(var binding: HwahaeListItemBinding) : RecyclerView.ViewHolder(binding.root)
-
 }
